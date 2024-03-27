@@ -1,3 +1,7 @@
+#Section 1: Flask Basics Notes
+
+## Installation on Windows
+
 To install virtual environment:
     "py -m venv 'venv name'"
 It'll then install, and to activate it:
@@ -21,3 +25,40 @@ within it, a settings.json file was created and contained the following json cod
     }
 This json code effectively tells vs code where in the projects root to find the python interpreter for
 this particular project.
+Having resolved all issues and successfully imported the Flask class, we'll now instantiate it.
+When instantiating the class, we'll always pass the __name__ parameter to it, as this references the module that we're 
+creating the Flask object in.
+Well now create our first route for the object.
+A route is essentially a URL endpoint for a particular thing in the app being created.
+The base or index or home route is generally just a plain "/" however when creating more routes, we'll add a 
+word after the slash which will normally be indicative of the route's function.
+Every route will be linked to a function that you'll have to define.
+Note that the index route is the base URL for your site.
+The @app.route line is referring to as a Decorator.
+In the return for the function, it returns directly to the browser, so if what is being returned is html, then the 
+browser will interpret it as such and will show it to you.
+To run and test this code, in the terminal we'll type
+    "flask run"
+and because we declared the environment variable earlier, flask knows what to run and will run your app.py file.
+Note that if you haven't saved the creation of the flask app before using flask run it'll error out, be sure to save 
+the work first.
+Once it's running we'll get some feedback regarding the runtime being a development server, the debug mode config and 
+also the local URL that the dev server is running on, which we can copy and paste into our browser to view the web page.
+Once you've entered it into your browser, you'll see the Hello! heading created in the return being displayed.
+We'll now make this morning interesting by allowing a name to be passed into the route.
+Any placeholder added to the endpoint in a decorator needs to be accounted for in the function as a parameter passed to it.
+For future reference, in this course we'll be using the .format() means of adding variables to strings as opposed to the 
+f"" method.
+Remember when using .format, we only put in an empty set of {} in the string itself to indicate where the 
+format inserts the variables.
+In the terminal, we can use CTRL + C to stop the server and flask run again to restart it.
+Remember to save the work before restarting or else it won't register.
+Having done this now if we just reload the URL passed in the terminal itself the browser will show a "Not Found" error.
+This is because the endpoint in that state no longer exists, as placeholder has now made it a different endpoint and we 
+have to pass something in the url to satisfy the placeholder requirement in the URL.
+For this I'll just use my own name and add: "/Michael" to the end of the URL and it'll now load successfully and have
+passed my name through the route function to display "Hello Michael!" in the browser.
+Note that with placeholders you can pass just about anything in to that URL.
+
+## The Two Ways of Running Flask Apps:
+
