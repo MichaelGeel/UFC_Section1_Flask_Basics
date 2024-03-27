@@ -1,0 +1,23 @@
+To install virtual environment:
+    "py -m venv 'venv name'"
+It'll then install, and to activate it:
+    "env/Scripts/activate"
+When it's activated, will then see an "(env)" at the beginning of each terminal line.
+Will then install flask into the environment using:
+    "pip install flask"
+We'll then create our ain app file and name it:
+    "app.py"
+We'll set an environment variable in the command prompt:
+    "set FLASK_APP = app.py"
+This allows flask to know hwat file to look for when it wants to run.
+It doesn't have to be app.py, but it is by conventional best practice and saves
+on having to specify otherwise.
+Now on to writing the code (see app.py for the code and notes.)
+Note that an extra step was made necessary, VS Code had failed to detect the python
+executable in the virtual environment, so in the root folder a ".vscode" folder had to be made,
+within it, a settings.json file was created and contained the following json code:
+    {
+    "python.pythonPath": "$Section1_Flask_Basics/env/Scripts/python"
+    }
+This json code effectively tells vs code where in the projects root to find the python interpreter for
+this particular project.
