@@ -106,3 +106,18 @@ Then just like always we can just type flask run to run the app.
 
 Routes are an essential component to our apps.
 Routes are how people are going to access different areas of your app or different parts of your API, whichever the case may be.
+As we've done in the examples thus far, our routes have only contained a ('/'), which signifies the index.
+But if we wanted to create a home route, we'd then add the word "home" after the slash:
+    "@app.route('/home')"
+then we'd naturally create a function that accompanies this route.
+Note that the function doens't need to have the same name as the route, but it's easier to track the routes that way.
+Now if you save the changes and rerun the app, you'll load in once again on the index page, but if you add a "/home" to 
+the end of the URL, you'll find yourself one the home page.
+If you try to add something undefined to the end of the URL that you haven't created a route for, you'll get a Not Found error.
+In a route, whenever you return a string, it gets automatically converted into HTML which you'll see as a result.
+You don't necessarily have to return HTML, it's just the most straightforward way to do so.
+If for example you want to return JSON, then you need to use the jsonify function.
+We'll import jsonify from flask.
+And create another route named /json to return jsonified Python data structures.
+A python list maps to a json array and python dictionary to a json object.
+See the accompanying coded route for the exmaple of this.

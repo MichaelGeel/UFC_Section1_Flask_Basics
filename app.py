@@ -1,5 +1,5 @@
 # First we import the Flask class from flask:
-from flask import Flask
+from flask import Flask, jsonify
 
 
 # Instantiating the Flask class that we've imported, __name__ references the name of the module you're working in,
@@ -16,6 +16,16 @@ def index(): # name):
         # For now we'll just return the below HTML code.
         # Have now added a name variable using the placeholer and format.
         return '<h1>Hello, World!</h1>' # {}!</h1>'.format(name)
+
+# Creating a home route:
+@app.route('/home')
+def home():
+        return '<h1>Hello, you are on the home page!</h1>'
+
+# Creating a route to return a jsonified version of python data structures.
+@app.route('/json')
+def json():
+        return jsonify({'key': 'value', 'key2': [1, 2, 3]})
 
 if __name__ == '__main__':
         app.run()
