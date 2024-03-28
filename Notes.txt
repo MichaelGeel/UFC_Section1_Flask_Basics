@@ -121,3 +121,10 @@ We'll import jsonify from flask.
 And create another route named /json to return jsonified Python data structures.
 A python list maps to a json array and python dictionary to a json object.
 See the accompanying coded route for the exmaple of this.
+The browser will return the json output as per the python data structure we fed into the jsonify function.
+If you don't want to have end and restart the app for every change made, you can add the debug=True parameter to the
+app.run and that'll cause the browser to constantly refresh as you make changes to your code.
+Note there other ways to activate debug mode that we'll explore later on.
+
+## 6) Route Methods
+
