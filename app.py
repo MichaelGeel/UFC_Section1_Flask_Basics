@@ -15,3 +15,6 @@ def index(name):
         # For now we'll just return the below HTML code.
         # Have now added a name variable using the placeholer and format.
         return '<h1>Hello {}!</h1>'.format(name)
+
+if __name__ == 'main':
+        app.run()

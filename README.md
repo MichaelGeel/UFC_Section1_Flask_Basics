@@ -1,5 +1,6 @@
 # UFC_Section1_Flask_Basics
-##The Ultimate Flask Course by Anthony Herbert.
+
+The Ultimate Flask Course by Anthony Herbert.
 
 This is Section 1 of The Ultimate Flask Course.
 

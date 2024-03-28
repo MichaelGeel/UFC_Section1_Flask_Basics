@@ -1,6 +1,6 @@
 #Section 1: Flask Basics Notes
 
-## Installation on Windows
+## 1) Installation on Windows
 
 To install virtual environment:
     "py -m venv 'venv name'"
@@ -60,5 +60,25 @@ For this I'll just use my own name and add: "/Michael" to the end of the URL and
 passed my name through the route function to display "Hello Michael!" in the browser.
 Note that with placeholders you can pass just about anything in to that URL.
 
-## The Two Ways of Running Flask Apps:
+## 2) The Two Ways of Running Flask Apps:
+
+There are a few ways of getting a flask app running.
+The first method being to have the following code block at the bottom of the code:
+    "if __name__ == '__main__':
+        app.run()
+        "
+This allows you to call the file directly using python, so in your terminal type:
+    "python app.py"
+This will then start the server.
+In newer versions, activating debug mode in the code block (app.run(debug=True)) causes errors.
+The alternative approach is using the "flask run" command.
+And if your main program file is "app.py" it'll pickup automatically and start the server.
+However, if the file name is something different then you have to export an environment variable to tell flask the name.
+    "export FLASK_APP=(file_name)"
+With this method, if you want to use debug mode, you have to export flask debug:
+    "export FLASK_DEBUG=1"
+Either approach is viable and only gets used on your development machine, when you go to deploy your flask app an entirely
+different approach is used.
+
+## 3) Installation and Hello World:
 
