@@ -82,3 +82,27 @@ different approach is used.
 
 ## 3) Installation and Hello World:
 
+Since lesson 1 covered the installation and activation of a virtual environment along with a small hello world intro
+there may not be much new content in this lesson.
+Have just removed the name placeholder to reset the code to match that of the lesson.
+
+## 4) Installation Using Pipenv:
+
+An additional alternative we'll look at now is using pipenv to install and flask run to run alongside it.
+Pipenv is an easy way to install packages as it combines pip and a virtual environment.
+Instead of creating a virtual environment first and then installing with pip, you just use pipenv to do everything.
+If you don't have it, install it using pip:
+    "pip install pipenv"
+Now to use it is pretty straightforward, whenever you'd install something with pip, you just do so with pipenv instead:
+    "pipenv install flask"
+It'll go ahead and install the library for us, then once it's installed, we can run
+    "pipenv shell"
+which will start up the virtual environment for us.
+It'll name the virtual environment based on whatever folder you're in at the moment.
+once the virtual environment is activate, if you want to install any other libraries you just do so with pipenv again.
+Then just like always we can just type flask run to run the app.
+
+## 5) Intro to Routes:
+
+Routes are an essential component to our apps.
+Routes are how people are going to access different areas of your app or different parts of your API, whichever the case may be.
