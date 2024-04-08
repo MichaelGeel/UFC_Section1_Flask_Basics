@@ -128,3 +128,15 @@ Note there other ways to activate debug mode that we'll explore later on.
 
 ## 6) Route Methods
 
+By default, endpoints created by the app.route decorator are for GET requests only.
+If you go to postman to try a POST request to one of the routes, doing a GET request to the url works fine and you get
+the response, however if you change the request type to POST, you'll see it give an error request type not allowed.
+If you want to change the method on a particular route to allow diffreetn types of HTTP requests to come in, we simply add:
+    "methods=['GET', 'POST']"
+inside the app.route decorator, and this lists the types of requests that can be made to that particular route.
+A GET request is always the default request type, and it's where a browser or API call is just getting information and
+not modifying anything.
+So if you want to make it a POST request, you simply add POST to the list of methods in the decorator, than when you
+go back to postman and retry the call it'll succeed and provide a response.
+Note that in the browser, you'll be always performing a get request if you put the url in the search bar and if a route
+doesn't allow for get requests, then you'll get a 405 not allowed response.

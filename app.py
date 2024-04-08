@@ -18,7 +18,7 @@ def index(): # name):
         return '<h1>Hello, World!</h1>' # {}!</h1>'.format(name)
 
 # Creating a home route:
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
         return '<h1>Hello, you are on the home page!</h1>'
 
