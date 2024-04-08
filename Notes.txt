@@ -151,3 +151,29 @@ Now the parameter in the route has to be the same as the parameter in the functi
 have a "name" variable as a parameter passed to it as well.
 To test this, we'll format the name variable into the simply output we have to show that it has successfully received the name
 parameter from the URL and processed it into the output.
+But this also means the route cannot be accessed if there is no data to be read into the parameter.
+However there is a workaround for this, and that is to add another decorator that only captures the route without the 
+inputd, and add a parameter called defaults, which takes a python dictionary containing default values for the route.
+    "defaults={'name': 'Default'}"\
+You can also add types to the inputs you create as URL parameters.
+If you want the input to be an integer, you would change <name> to: <int:name>
+If this way, if you attempt to load the page with the incorrect data type provided to that parameter, you'll get a type error.
+If you want the input to be a string, then it'll be: <string:name>
+Note that if you enter a number when the data type is a string, that number will be read as a string instead of an int.
+
+
+## Request Query String:
+
+Ontop of building the URL, there are other ways of passing data into the app.
+The next method we'll look at is passing in data using a Query String.
+Query strings are when we add ampersands and question marks into the URL and pass the data that way.
+For example:
+    "url...?name=Sara&location=Florida"
+However just having this isn't enough, we'll still need a means of reading this data, and for that, we'll import the 
+requests object from flask.
+    "from flask import request"
+Then in the query route function, we'll create 2 variables to hold the values from the query string.
+We'll assign these variables to the query string values we're passing in the URL using this code:
+    "variable = request.args.get('qs_key')"
+Query strings behave like python dictionaries where they'll always take the format of "key=value" and when we want 
+to retrieve that data, it'll be by using the above request object code to reference the key.
