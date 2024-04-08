@@ -41,5 +41,27 @@ def query():
         # Amending the output to utilize the data we've received.
         return '<h1>Hi {}, you are from {} and are on the query page.</h1>'.format(name, location)
 
+# Creating a new route for lesson 9: Request form data:
+@app.route('/theform')
+def theform():
+
+        # Creating the form and the relevant inputs to be filled in in the form alongside the submit.
+        return '''<form method="POST" action="/process">
+                        <input type="text" name="name">
+                        <input type="text" name="location">
+                        <input type="submit" value="Submit">
+                </form>'''
+
+# Adding the process route that will consume the data populated within the theform route:
+# Because we're only getting data from the form, this route will only accept post requests.
+
+@app.route('/process', methods=['POST'])
+def process():
+        # Retrieving the data passed in from the form:
+        name = request.form['name']
+        location = request.form['location']
+
+        return '<h1>Hello {} from {}. You have submitted the form.'.format(name, location)
+
 if __name__ == '__main__':
         app.run(debug=True)

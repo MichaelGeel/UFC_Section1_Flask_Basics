@@ -177,3 +177,30 @@ We'll assign these variables to the query string values we're passing in the URL
     "variable = request.args.get('qs_key')"
 Query strings behave like python dictionaries where they'll always take the format of "key=value" and when we want 
 to retrieve that data, it'll be by using the above request object code to reference the key.
+
+## Request Form Data:
+
+This lesson will look at how to send and receive form data.
+We'll create a form route where the user will be able enter data, hit submit, and then another route in flask will get 
+that form data.
+The form route will return a form with a POST method and the action will be process which is a route to still be created:
+    "return '<form method="POST" action="/process">'
+Remember to manage the single and double quotation marks accordingly so as to not mess with the output and program functionality.
+Note that here the action is literally the name of the route that'll be getting called by the submit of the form.
+After the form in the output we'll add the input:
+    "<input type='text' name='name'><input type='text' name='location'><input type='submit' value='Submit'>"
+Then we'll close the form off with </form>.
+Note that in cases like this where the output string is incredibly long, we can instead use the triple quotation marks
+to turn it into a docstring and this way we can span multiple lines for the output.
+Now if we go to the form route, we'll get a form in the browser which has 2 text-boxes and a submit button.
+We're able to now enter a name and location in the text boxes, but if we hit submit we'll get a not found error,
+and this is because the route for the url we link to in the form route does not exist, but it successfully attempts to 
+load into that route.
+So we'll fix that buy adding said route.
+Getting the data from the form is similar to how it was done with the query string.
+But in this case, we'll use:
+    "varible = request.form['key']"
+Then we'll just provide a basic output to verify that the data has been submitted successfully.
+Note that the request.args.get only works if query string data was passed to the route and similarly 
+request.form only works if form data was passed.
+It comes down to you as the app designer to decide on how you inted to receive data.
