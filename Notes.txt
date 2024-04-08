@@ -140,3 +140,14 @@ So if you want to make it a POST request, you simply add POST to the list of met
 go back to postman and retry the call it'll succeed and provide a response.
 Note that in the browser, you'll be always performing a get request if you put the url in the search bar and if a route
 doesn't allow for get requests, then you'll get a 405 not allowed response.
+
+## 7) Route Variables
+
+A typical feature of a web app is to allow users to pass in custom information.
+One of a methods to do that is passing variables in the URL itself.
+Using a home route as an example, we'll modify it to accept a name as custom data:
+    "app.route('/home/<name>')"
+Now the parameter in the route has to be the same as the parameter in the function for the route too, so the function will
+have a "name" variable as a parameter passed to it as well.
+To test this, we'll format the name variable into the simply output we have to show that it has successfully received the name
+parameter from the URL and processed it into the output.
