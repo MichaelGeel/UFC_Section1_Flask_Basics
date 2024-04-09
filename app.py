@@ -54,14 +54,27 @@ def theform():
 
 # Adding the process route that will consume the data populated within the theform route:
 # Because we're only getting data from the form, this route will only accept post requests.
-
 @app.route('/process', methods=['POST'])
 def process():
         # Retrieving the data passed in from the form:
         name = request.form['name']
         location = request.form['location']
 
-        return '<h1>Hello {} from {}. You have submitted the form.'.format(name, location)
+        return '<h1>Hello {} from {}. You have submitted the form.</h1>'.format(name, location)
+
+# Route for handling JSON data:
+@app.route('/processjson', methods=['POST'])
+def processjson():
+
+        # Fetch the json payload sent to this route:
+        data = request.get_json()
+
+        # Extracting the data from the payload:
+        name = data['name']
+        location = data['location']
+        rand_list = data['randomlist']
+
+        return jsonify({'result': 'success', 'name': name, 'location': location, 'Rand_list_key': rand_list[2]})
 
 if __name__ == '__main__':
         app.run(debug=True)

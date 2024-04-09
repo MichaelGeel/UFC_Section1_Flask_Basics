@@ -162,7 +162,7 @@ If you want the input to be a string, then it'll be: <string:name>
 Note that if you enter a number when the data type is a string, that number will be read as a string instead of an int.
 
 
-## Request Query String:
+## 8) Request Query String:
 
 Ontop of building the URL, there are other ways of passing data into the app.
 The next method we'll look at is passing in data using a Query String.
@@ -178,7 +178,7 @@ We'll assign these variables to the query string values we're passing in the URL
 Query strings behave like python dictionaries where they'll always take the format of "key=value" and when we want 
 to retrieve that data, it'll be by using the above request object code to reference the key.
 
-## Request Form Data:
+## 9) Request Form Data:
 
 This lesson will look at how to send and receive form data.
 We'll create a form route where the user will be able enter data, hit submit, and then another route in flask will get 
@@ -204,3 +204,28 @@ Then we'll just provide a basic output to verify that the data has been submitte
 Note that the request.args.get only works if query string data was passed to the route and similarly 
 request.form only works if form data was passed.
 It comes down to you as the app designer to decide on how you inted to receive data.
+
+## 10) Request JSON Data:
+
+We can also pass data to a flask app using a JSON object.
+To demonstrate this particular methodology, will be using Postman, which is a separate application that is great for 
+testing APIs, in the video, the Chrome version is used but there is a downloadable application version that works just fine.
+We'll create a route for handling JSON called processjson.
+We'll make it a POST only but that just comes down to preference in this particular instance.
+We'll set the output of this route to be a jsonified python dictionary:
+    "jsonify({'result': 'success'})"
+So when we run the app, go into postman and do a post request to this route, we should see the json response in a formatted output.
+However, the application isn't currently taking in any data, so now we'll navigate to the body tab under the URL.
+Within the body we'll switch to raw and ensure the data format is JSON.
+Now we can construct a JSON object that we'll send in the request.
+We'll create a name, location and random list to demonstrate how arrays work.
+    "{'name': 'Mike', 'location': 'PE', 'randomlist': ['one', 'two', 'three', 'four']}"
+Note that JSON in Postman only uses "" and does not accept ''. (Doulble only)
+Then we can send it off and we'll still get the same success result from the route, we won't get any feedback based on the data we sent and
+that's because the app isn't actually processing the data yet.
+To do this we need to get the results, so in the route, we'll call:
+    "request.get_json()"
+and this'll retrieve the json payload sent to the route, it'll also convert it to Python data structures for consumption.
+JSON objects become Pyton Dictionaries and JSON Arrays become Python Lists.
+So now we can just retrive the data points like we'd extract data from any dictionary.
+We'll now add the variables into the jsonify response along with relevant keys to confirm the data is being received, fetched and process correctly.
