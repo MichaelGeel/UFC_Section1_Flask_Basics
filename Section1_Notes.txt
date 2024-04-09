@@ -275,3 +275,31 @@ If we run it as is, we'll be successfully redirected to the home page upon click
 that no name variable was passed to it and thus the default instance of the home page was returned.
 To do this we'll re-allow the saving of the name entered into the form, then in the url_for function, we'll inclue a name variable:
     "url_for('home', name=name)"
+Now if we restart and rerun the program, we'll see that the name variable has been successfully passed to the home page.
+Another feature of url_for is that you can pass in more than what a route needs, for instance, using what we have already,
+you can add location in after name in url_for:
+    "url_for('home', name=name, location=location)"
+And even though the home route doesn't utilize location, it'll include it and build it into the URL as a query string since it's not 
+a part of the home route itsel.
+What url_for does here is it checks to see if the parameters provided are a part of the route, and if they aren't, then it
+appends then to the end of the url as a query string.
+
+## 13) Configuration:
+
+It's normal for a web application to require quite a bit of configuration to work correclty and flask makes it easy for you to supply
+this configuration.
+A configuration value we've already seen was the debug configuration value.
+There is a comon way of creating configuration values or adding configuration values in flask.
+To start we'll remove the "debug=True" from the app.run.
+Now we add our configurations after the app instantiation (app = Flask(__name__)) but before anything else.
+Now using the debug configuration as an example, to configure debug mode we write:
+    "app.config['DEBUG'] = True"
+This calls the config of our app which is essentially a dictionary containing all our configuration values, and here we're
+accessing the DEBUG config value by calling the key "DEBUG", which has to be in all caps and setting its value to true.
+To view a full list of all the configuration values available in app.config, will need to go to the flask documentation.
+Typically you won't need the configuration values unless there's a specific need that has you setting the configuration value.
+However, flask extensions, which will more than likely be used, use the same configuration method, so this is valuable to learn up front.
+There are several ways of setting flask app configuration values, but the method we just used is the most straightforward way.
+
+## 14) Sessions:
+

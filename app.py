@@ -5,6 +5,9 @@ from flask import Flask, jsonify, request, url_for, redirect
 # in this case: app.py
 app = Flask(__name__) 
 
+# Adding our configuration values here, starting with debug mode:
+app.config['DEBUG'] = True
+
 # Creating a route using the Flask object.
 # <name> is not html, it's a placeholder.
 #Will remove the name placeholder for now.
@@ -100,5 +103,6 @@ def processjson():
 
         return jsonify({'result': 'success', 'name': name, 'location': location, 'Rand_list_key': rand_list[2]})
 
+# Removing debug=True for the new configuration method.
 if __name__ == '__main__':
-        app.run(debug=True)
+        app.run()
