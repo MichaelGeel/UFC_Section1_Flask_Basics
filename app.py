@@ -1,5 +1,5 @@
 # First we import the Flask class from flask:
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, url_for, redirect
 
 # Instantiating the Flask class that we've imported, __name__ references the name of the module you're working in,
 # in this case: app.py
@@ -40,12 +40,12 @@ def query():
 
         # Amending the output to utilize the data we've received.
         return '<h1>Hi {}, you are from {} and are on the query page.</h1>'.format(name, location)
+        
 
 # Creating a new route for lesson 9: Request form data:
 # Adding both GET and POST request method permissions for the combine:
 @app.route('/theform')# , methods=['POST', 'GET'])
 def theform():
-
         # Adding the if statement to test for request type:
         # Reverting to original formatting for the GET POST route split.
         #if request.method == "GET":
@@ -62,10 +62,17 @@ def theform():
 @app.route('/theform', methods=['POST'])
 def process():
         # Retrieving the data passed in from the form:
+        # Taking these 2 variables out (pretend saved to a db)
+        # Readding name for passing the variable.
+        # Readding locaton to show it can be passed to the home route 
         name = request.form['name']
         location = request.form['location']
 
-        return '<h1>Hello {} from {}. You have submitted the form.</h1>'.format(name, location)
+        # Also removing the return statemnt.
+        # return '<h1>Hello {} from {}. You have submitted the form.</h1>'.format(name, location)
+        # Building the return statement redirect:
+        # Including the location variable.
+        return redirect(url_for('home', name=name, location=location))
 
 
 # Adding the process route that will consume the data populated within the theform route:

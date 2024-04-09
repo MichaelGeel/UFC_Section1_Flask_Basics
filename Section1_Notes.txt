@@ -252,3 +252,26 @@ First we'll run the GET version of theform which the browser does by default, an
 If all worked out correctly, we'll see the original output from /process being displayed while still on the /theform route.
 Note that you can also separate the 2 request types entirely, you can have 2 routes with the same name and different request types allowed that will govern which one 
 gets called at any particular occasion, note that the view functions still need to have different names for this however.
+Testing this it'll behave as expected, which is the same as before.
+This all comes down to preference and what your preferred methodology is.
+NOTE that going forward in both the course and my personal work I'll be doing all request types and handling in a singular route instance.
+
+## 12) Redirects and url_for:
+
+Often within a web applicaton you'll want to redirect a user to another location once they're done doing something.
+For example, once a user has logged in, you can redirect them to the page they were at before logging in or somewhere else.
+To demonstrate this, we'll redirect a user from the /theform page to the home page once they're done.
+But before we can implement this functionality, we have to import a few things.
+First we need to import url_for, which is a function to get the actual URL for a particular route.
+The nwe need to import redirect, which will handle redirecting the user to the new route.
+    "from flask import url_for, redirect"
+Now what we'll do first is take out the name and location variable saves from the POST /theform functionality.
+We'll also remove the initial return statement, and replace it with a new one containing the redirect.
+The syntax for the redirect is as follows:
+    "redirect(target URL)"
+Now instead of a target url, we use url_for to get the url address of the route we want to redirect to:
+    "redirect(url_for('route view function name'))"
+If we run it as is, we'll be successfully redirected to the home page upon clicking the submit button, however, we'll see 
+that no name variable was passed to it and thus the default instance of the home page was returned.
+To do this we'll re-allow the saving of the name entered into the form, then in the url_for function, we'll inclue a name variable:
+    "url_for('home', name=name)"
