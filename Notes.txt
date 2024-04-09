@@ -229,3 +229,26 @@ and this'll retrieve the json payload sent to the route, it'll also convert it t
 JSON objects become Pyton Dictionaries and JSON Arrays become Python Lists.
 So now we can just retrive the data points like we'd extract data from any dictionary.
 We'll now add the variables into the jsonify response along with relevant keys to confirm the data is being received, fetched and process correctly.
+We should then see all the data mirrored back at us in postman when we send to the updated route once again.
+
+## 11) Incoming Request Method:
+
+Another useful and important feature of the request object is using it to get the method used for the requests.
+As previously covered, we can change what methods are allowed for a particular route, POST, PUT, GET, DELETE etc.
+A common pattern in flask is to combine GET and POST requests in one route, one view function and process them differently 
+based on the method used.
+So on a high level using the request object you get the method type used and an if statement to dictate the action based on the 
+method type.
+For this demonstration we'll refacter "/theform" and "/process" routes into one.
+We'll combine them into one in /theform, and the first step being to ensure both POST and GET requests are allowed.
+Now we'll test for the method type, and to do this, we'll use:
+    "request.method"
+in an if statement to test whether it's a "GET" or "POST" request.
+For GET we'll return the original functionality of /theform, but if it's a POST, we'll return the functionality of /process.
+Note that when doing these types of code changes, ensure there's nothing that refers to the route being merged in, as that'll cause an error.
+In this case, the GET operation in /theform referenced /process but it'll have to change to refer itself (function will be different as it does specify POST type request.)
+Now we've reduced 2 route functionalities into 1, and all we'd need to do is test it, so we'll load theform up in our browser,
+First we'll run the GET version of theform which the browser does by default, and fill in the data and then submit to run the POST request.
+If all worked out correctly, we'll see the original output from /process being displayed while still on the /theform route.
+Note that you can also separate the 2 request types entirely, you can have 2 routes with the same name and different request types allowed that will govern which one 
+gets called at any particular occasion, note that the view functions still need to have different names for this however.

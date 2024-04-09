@@ -42,25 +42,42 @@ def query():
         return '<h1>Hi {}, you are from {} and are on the query page.</h1>'.format(name, location)
 
 # Creating a new route for lesson 9: Request form data:
-@app.route('/theform')
+# Adding both GET and POST request method permissions for the combine:
+@app.route('/theform')# , methods=['POST', 'GET'])
 def theform():
 
-        # Creating the form and the relevant inputs to be filled in in the form alongside the submit.
-        return '''<form method="POST" action="/process">
-                        <input type="text" name="name">
-                        <input type="text" name="location">
-                        <input type="submit" value="Submit">
-                </form>'''
+        # Adding the if statement to test for request type:
+        # Reverting to original formatting for the GET POST route split.
+        #if request.method == "GET":
+                # Creating the form and the relevant inputs to be filled in in the form alongside the submit.
+        return '''<form method="POST" action="/theform">
+                                <input type="text" name="name">
+                                <input type="text" name="location">
+                                <input type="submit" value="Submit">
+                        </form>'''
+#Commenting out the else for historic formatting evidence.
+#        else:
 
-# Adding the process route that will consume the data populated within the theform route:
-# Because we're only getting data from the form, this route will only accept post requests.
-@app.route('/process', methods=['POST'])
+#Adding the POST route decorator for the split methodology:
+@app.route('/theform', methods=['POST'])
 def process():
         # Retrieving the data passed in from the form:
         name = request.form['name']
         location = request.form['location']
 
         return '<h1>Hello {} from {}. You have submitted the form.</h1>'.format(name, location)
+
+
+# Adding the process route that will consume the data populated within the theform route:
+# Because we're only getting data from the form, this route will only accept post requests.
+# Commenting out for records of original work instead of deleting the route.
+#@app.route('/process', methods=['POST'])
+#def process():
+#        # Retrieving the data passed in from the form:
+#        name = request.form['name']
+#        location = request.form['location']
+#
+#        return '<h1>Hello {} from {}. You have submitted the form.</h1>'.format(name, location)
 
 # Route for handling JSON data:
 @app.route('/processjson', methods=['POST'])
