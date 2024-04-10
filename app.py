@@ -1,5 +1,5 @@
 # First we import the Flask class from flask:
-from flask import Flask, jsonify, request, url_for, redirect
+from flask import Flask, jsonify, request, url_for, redirect, session
 
 # Instantiating the Flask class that we've imported, __name__ references the name of the module you're working in,
 # in this case: app.py
@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 # Adding our configuration values here, starting with debug mode:
 app.config['DEBUG'] = True
+# Adding a secret key to enable flask to sign cookies so that sessions can be implemented.
+app.config['SECRET_KEY'] = 'Thisisasecret'
 
 # Creating a route using the Flask object.
 # <name> is not html, it's a placeholder.
@@ -15,6 +17,8 @@ app.config['DEBUG'] = True
 # Defining the function tied to the route.
 # Added the name parameter to match the <name> placeholder.
 def index(): # name):
+        # Removing the name from the session.
+        session.pop('name', None)
         # For now we'll just return the below HTML code.
         # Have now added a name variable using the placeholer and format.
         return '<h1>Hello, World!</h1>' # {}!</h1>'.format(name)
@@ -27,12 +31,19 @@ def index(): # name):
 # Setting the name parameter to be locked as a string data type:
 @app.route('/home/<string:name>', methods=['GET', 'POST'])
 def home(name):
+        # Adding name to the session dictionary.
+        session['name'] = name
         return '<h1>Hello {}, you are on the home page!</h1>'.format(name)
 
 # Creating a route to return a jsonified version of python data structures.
 @app.route('/json')
 def json():
-        return jsonify({'key': 'value', 'key2': [1, 2, 3]})
+        # Retrieving name from the session dictionary.
+        if 'name' in session:
+                name = session['name']
+        else:
+                name = 'NotInSession'
+        return jsonify({'key': 'value', 'key2': [1, 2, 3], 'name': name})
 
 # Creating a new route as an example for query strings:
 @app.route('/query')

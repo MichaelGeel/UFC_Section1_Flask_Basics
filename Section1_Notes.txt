@@ -303,3 +303,39 @@ There are several ways of setting flask app configuration values, but the method
 
 ## 14) Sessions:
 
+In order to use sessions we need to configure a specific configuration value.
+In a web app, sessions are used to keep data persistent across routes or pages.
+For example, when you log into a site, the site needs to know that you are logged in regardless of what page you go to.
+So instead of passing your user name in the URL every single time there's a cookie that represents your session that's passed 
+automatically any time you make a request anywhere on the site.
+The app can then go inside this cookie, retrieve the data to determine who you are and then it will display information relevant to your account.
+So to get started we first need to add the configuration value:
+    "app.config['SECRET_KEY'] = 'Thisisasecret'"
+This is so flask can sign your cookie so that we'll be secure.
+The idea behind a session cookie is someone who looks at the cookie if they know what they're doing can see what's inside the cookie,
+so you never want to put sensitive information inside the cookie but with the secret key they can't modify the cookie and send it back to you.
+But things that aren't secret like a username you can put in.
+A secret key needs to be something that is truly secret that only you know it's best to generate something random, but for the 
+demo we'll use something simple.
+We'll see later on how to generate something actually random.
+Next we'll import session from flask.
+Now in the home route function we'll add something to the session, a simple dictionary using the session object we imported:
+    "sessio['name'] = name"
+So when we run the home route this'll be either the name passed in the URL or it'll be default.
+Now when we add name to the session, all the other routes will have access to that name even though it's not being specified anywhere in the URL.
+To demonstrate this, in the /json route we'll use the name.
+To read the session, in the json route function we add:
+    "name = session['name']"
+It's effectively the reverse, here we're just retrieve the name from session instead of assigning it like we did in the home route.
+Now we'll run the app, load up the home screen with a name, then we'll go to the json route and we should see the name present there.
+There is a problem you can run into, and that's if you remove something from the session and then try to access it afterwards.
+So to demonstrate this, in the index route we'll add:
+    "session.pop('name', None)"
+So now we reload the home page, the nav to the index to remove the name from the session then to json where it attempts to access name.
+We'll get a key error because the 'name' key doesn't exist in the session anymore.
+A common workaournd for this is to include an if statement:
+    "if 'name' in session:"
+This effectively checks the session for the presence of a name key and then behaves according to the result.
+
+## 15) Debug Mode:
+
