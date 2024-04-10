@@ -339,3 +339,23 @@ This effectively checks the session for the presence of a name key and then beha
 
 ## 15) Debug Mode:
 
+Until now whenever we've simulated an error in the app we've noticed a nice error message on-screen that helps us troubleshoot
+the problem.
+We get this screen because we're in debug mode.
+So debug mode is responsible for automatically reloading the app as we make and save changes in the code, as well as providing a user friendly 
+means of figuring out what the problem is that we're facing when we get an error.
+When debug mode is set to false and we get an error causing the app to crash, we just get an "Internal Server Error" message which doesn't 
+help us much.
+Granted we can still look at the logs in the console, it's not exactly as great to read or look at.
+With debug mode on, we get the Traceback, which follows the error file-pathing to isolate what's causing the issue, and it does so in 
+a formatted manner that is easy to read.
+Another amazing feature of debug mode is that we can view the contents of a data structure at the moment when the app crashed.
+For example, should we recreate the error where name is no longer in the session but we try to access it, we can open it to view the various 
+data structure contents to assist in tracing the issue.
+Note that when this is done, you will be asked for a pin for security purposes, and you'll find the pin in your console error message.
+Also note you can only access data structures that are active before the app crashes, you can't access something that only becomes active after 
+the app crashes.
+For these reasons it is a good idea to always have debug mode on when you're developing you app and always turn it off for go-live on the app.
+
+
+END OF SECTION 1
